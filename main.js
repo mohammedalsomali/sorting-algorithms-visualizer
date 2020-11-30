@@ -2,15 +2,17 @@ var canvas;
 var ctx;
 var canvasWidth;
 var canvasHeight;
-var h = [];
+var h= new Array();
 
 window.onload = function () {
-  //document.getElementById("btn").addEventListener("click", InitTests);
+  InitTests();
+  //getRandomInt();
+  // document.getElementById("btn").addEventListener("click", InitTests);
   document.getElementById("btn").addEventListener("click", getRandomInt);
-  document.getElementById("btn").addEventListener("click", InitTests);
-  //document.getElementById("btn").addEventListener("click", getRandomInt);
+  // document.getElementById("btn").addEventListener("click", InitTests);
+  // document.getElementById("btn").addEventListener("click", getRandomInt);
   document.getElementById("btn2").addEventListener("click", sort);
-  getRandomInt();
+  // getRandomInt();
 }
 
 
@@ -31,21 +33,20 @@ function clearall() {
 }
 
 function getRandomInt() {
+  clearall();
+  InitTests();
   for (var i = 0; i < canvasWidth / 10; ++i) {
     h[i] = (Math.random() * canvasHeight);
     
 
   }
   console.log(h)
-
-  return
+  makedata();
+  return 
 }
 
 
 function makedata() {
-  InitTests();
-  clearall();
-  getRandomInt();
   ctx = canvas.getContext("2d");
   for (var i = 0; i < canvasWidth / 10; ++i) {
     ctx.beginPath();
@@ -89,8 +90,9 @@ function changecolor() {
 //   }
 
 // }
-var w = [3, 4, 8, 7, 5, 4]
+
 function sort() {
+  ctx.fillRect(0, 0, canvasWidth, canvasHeight);
   for (var i = 0; i <= h.length - 1; ++i) {
     for (var j = 0; j <= h.length - i; ++j) {
 
@@ -101,5 +103,6 @@ function sort() {
        }
       }
     }
-    console.log(h)
+    //console.log(h)
+    makedata();
   }
