@@ -1,11 +1,12 @@
 var canvas;
 var ctx;
 var canvasWidth;
-var canvasHeight;
-var h= new Array();
-
+var canvasHeight; 
+var lines = new Array();
+var myd = document.getElementById("mydiv");
+var adiv = document.createDocumentFragment();
 window.onload = function () {
-  InitTests();
+  //InitTests();
   //getRandomInt();
   // document.getElementById("btn").addEventListener("click", InitTests);
   document.getElementById("btn").addEventListener("click", getRandomInt);
@@ -14,7 +15,6 @@ window.onload = function () {
   document.getElementById("btn2").addEventListener("click", sort);
   // getRandomInt();
 }
-
 
 
 
@@ -29,36 +29,56 @@ function InitTests() {
 
 function clearall() {
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-  h.length = 0;
+  lines.length = 0;
 }
 
 function getRandomInt() {
-  clearall();
   InitTests();
+  clearall();
   for (var i = 0; i < canvasWidth / 10; ++i) {
-    h[i] = (Math.random() * canvasHeight);
+    lines[i] = (Math.random() * canvasHeight);
     
 
   }
-  console.log(h)
+  //console.log(lines)
   makedata();
   return 
 }
+ function draw(a,b, i, j){
+  ctx.fillRect(i * 10, 0, 10, canvasHeight);
+  ctx.fillRect((i + j) * 10, 0, 10, canvasHeight);
+  ctx.beginPath();
+  ctx.moveTo(i * 10 , canvasHeight);
+  ctx.lineWidth = 10;
+  ctx.lineTo(i * 10 , a);
+  ctx.strokeStyle = "blue";
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo((j + i) * 10 , canvasHeight);
+  ctx.lineWidth = 10;
+  ctx.lineTo((j+i) * 10 , b);
+  ctx.strokeStyle = "blue";
+  ctx.stroke();
+  
+
+}
+
 
 
 function makedata() {
   ctx = canvas.getContext("2d");
   for (var i = 0; i < canvasWidth / 10; ++i) {
     ctx.beginPath();
-    ctx.moveTo(i * 10, canvasHeight);
+    ctx.moveTo(i * 10 , canvasHeight);
     ctx.lineWidth = 10;
-    ctx.lineTo(i * 10, h[i]);
-    ctx.strokeStyle = "blue";
+    ctx.lineTo(i * 10 , lines[i]);
+    ctx.strokeStyle = "pink";
     ctx.stroke();
     //console.log(h[i])
   }
 
 }
+
 
 function changecolor() {
   return document.getElementById("mycanvas").style.backgroundColor = 'red';
@@ -66,16 +86,7 @@ function changecolor() {
 }
 
 
-// function quicksort( arr, start, end){
-//   if (start <= end){
-//     var i = devide(arr, start, end);
-//     quicksort(arr, start, i - 1);
-//     quicksort(arr, i + 1, end);
 
-//   }
-  
-
-// }
 
 // function devide( arr, start, end){
 //   var pv = arr[end];
@@ -92,17 +103,21 @@ function changecolor() {
 // }
 
 function sort() {
-  ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-  for (var i = 0; i <= h.length - 1; ++i) {
-    for (var j = 0; j <= h.length - i; ++j) {
-
-      if (h[i] > h[i + j]) {
-        temp = h[i];
-        h[i] = h[j + i];
-        h[i + j] = temp;
+  //ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+  for (var i = 0; i <= lines.length - 1; ++i) {
+    for (var j = 0; j <= lines.length - i; ++j) {
+      if (lines[i] > lines[i + j]) {
+        temp = lines[i];
+        lines[i] = lines[j + i];
+        lines[i + j] = temp;
+        //submit(lines[i], lines[i + j], i, j);
+        setInterval(draw, 10, lines[i],lines[i+j],i,j);
+        
        }
       }
     }
     //console.log(h)
-    makedata();
+    //makedata();
   }
+
+ 

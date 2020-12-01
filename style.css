@@ -8,12 +8,16 @@ body
 {
     display: grid;
     align-content: center;
+    
 }
+
+
+
 canvas
 {
-    height: auto;
     width: 100%;
     margin: auto;
+    background-color: turquoise;
 }
 
 button
