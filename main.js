@@ -13,11 +13,13 @@ window.onload = function () {
   canvasWidth = canvas.width;
   canvasHeight = canvas.height;
   document.getElementById("btn").addEventListener("click", getRandomInt);
-  document.getElementById("btn2").addEventListener("click", sort);
+  document.getElementById("btn2").addEventListener("click", interval);
   
 }
 
-
+function interval(){
+  setInterval(sort, 100);
+}
 
 
 
@@ -85,24 +87,50 @@ function changecolor() {
 
 
 
+  
 
-function sort() {
-  //ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-  for (var i = 0; i <= lines.length - 1; ++i) {
-    for (var j = 0; j <= lines.length - i; ++j) {
-      if (lines[i] > lines[i + j]) {
-        temp = lines[i];
-        lines[i] = lines[j + i];
-        lines[i + j] = temp;
-        //submit(lines[i], lines[i + j], i, j);
-        //setInterval(draw, 10, lines[i], lines[i + j], i, j);
+
+async function sort() {
+  for (var i = 0; i < lines.length ; ++i) {
+    ctx.beginPath();
+    ctx.moveTo(i * 10, canvasHeight);
+    ctx.lineWidth = 10;
+    ctx.lineTo(i * 10, lines[i]);
+    ctx.strokeStyle = "red";
+    ctx.stroke();
+    //i = i + 1;
+    for (var j = 0; j < lines.length - i; ++j) {
+      // ctx.beginPath();
+      // ctx.moveTo((i + j) * 10, canvasHeight);
+      // ctx.lineWidth = 10;
+      // ctx.lineTo((i + j) * 10, lines[j + i]);
+      // ctx.strokeStyle = "red";
+      // ctx.stroke();
+      await draw((lines[i], lines[i + j], i, j)); 
+      // if (lines[i] > lines[i + j]) {
+      //   temp = lines[i];
+      //   lines[i] = lines[j + i];
+      //   lines[i + j] = temp;
+      //   setTimeout(draw, 1000, lines[i], lines[i + j], i, j);
 
         
-
+      j = j + 1;
       }
-    }
+      i = i + 1;
+    // }
   }
   //console.log(h)
-  makedata();
+  //makedata();
 }
 
+async function draw(a,b,i,j){
+  ctx.beginPath();
+      ctx.moveTo((i + j) * 10, canvasHeight);
+      ctx.lineWidth = 10;
+      ctx.lineTo((i + j) * 10, lines[j + i]);
+      ctx.strokeStyle = "red";
+      ctx.stroke();
+      await timer(10)
+}
+
+function timer(ms) { return new Promise(res => setTimeout(res, ms)); }
