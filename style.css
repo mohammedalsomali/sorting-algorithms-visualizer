@@ -1,26 +1,30 @@
 html, body
 {
-    height:fit-content;
+    height: 100%;
+    width: 100%;
     background-color: black;
 }
 
-body
+/* body
 {
     display: grid;
     align-content: center;
     
+} */
+.my{
+    height: 100%;
+    width: 100%;
 }
 
 
-
-canvas
+/* canvas
 {
     
     margin: auto;
    
-}
+} */
 
-button
+/* button
 {
     margin: auto;
-}
+} */
