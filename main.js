@@ -92,7 +92,7 @@ async function sort() {
       await draw(lines[i+j], i+ j);
       
       if (lines[i] > lines[i + j]) {
-        //ctx.fillRect((i +j) * 10, 0, 20, canvasHeight);
+        ctx.fillRect((i +j-1) * 10, 0, 20, canvasHeight);
         temp = lines[i];
         lines[i] = lines[j + i];
         lines[i + j] = temp;
@@ -148,7 +148,7 @@ async function draw(b,i){
 }
 
 async function drawback(b,i){
-  ctx.clearRect(i * 10, 0, 20, canvasHeight);
+  ctx.clearRect(1 - i * 10, 0, 10, canvasHeight);
   ctx.beginPath();
   ctx.moveTo(i  * 10, canvasHeight);
   ctx.lineWidth = 10;
@@ -163,7 +163,7 @@ async function drawback(b,i){
 
 
 async function drawnew(a,b, i,j) {
-  ctx.clearRect(i * 10, 0, 20, canvasHeight);
+  ctx.clearRect(i * 10, 0, 10, canvasHeight);
   ctx.beginPath();
   ctx.moveTo(i * 10, canvasHeight);
   ctx.lineWidth = 10;
@@ -171,7 +171,7 @@ async function drawnew(a,b, i,j) {
   ctx.strokeStyle = "blue";
   ctx.stroke();
   // await timer(10 );
-  ctx.clearRect(j * 10, 0, 20, canvasHeight);
+  //ctx.clearRect( j * 10, 0, 20, canvasHeight);
   // ctx.beginPath();
   // ctx.moveTo(j * 10, canvasHeight);
   // ctx.lineWidth = 10;
