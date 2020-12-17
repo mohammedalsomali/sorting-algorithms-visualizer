@@ -8,7 +8,7 @@ var lines = new Array();
 window.onload = function () {
   canvas = document.getElementById('mycanvas');
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.height = window.innerHeight * 0.95;
   ctx = canvas.getContext('2d');
   canvasWidth = canvas.width;
   canvasHeight = canvas.height;
@@ -92,12 +92,13 @@ async function sort() {
       await draw(lines[i+j], i+ j);
       
       if (lines[i] > lines[i + j]) {
-        ctx.fillRect((i +j-1) * 10, 0, 20, canvasHeight);
+        // ctx.fillRect((i +j-1) * 10, 0, 20, canvasHeight);
         temp = lines[i];
         lines[i] = lines[j + i];
         lines[i + j] = temp;
         //await timer( 10);
         await drawnew(lines[i] ,lines[i + j], i, i + j );
+        await drawback(lines[i+j], i+j);
       //   // ctx.fillstyle = "black";
       //   // ctx.fillRect(i * 10, 0, 11, canvasHeight);
       //   // await timer(30);
@@ -148,7 +149,7 @@ async function draw(b,i){
 }
 
 async function drawback(b,i){
-  ctx.clearRect(1 - i * 10, 0, 10, canvasHeight);
+  //ctx.clearRect(1 - i * 10, 0, 10, canvasHeight);
   ctx.beginPath();
   ctx.moveTo(i  * 10, canvasHeight);
   ctx.lineWidth = 10;
@@ -170,16 +171,16 @@ async function drawnew(a,b, i,j) {
   ctx.lineTo(i * 10, a);
   ctx.strokeStyle = "blue";
   ctx.stroke();
-  // await timer(10 );
-  //ctx.clearRect( j * 10, 0, 20, canvasHeight);
-  // ctx.beginPath();
-  // ctx.moveTo(j * 10, canvasHeight);
-  // ctx.lineWidth = 10;
-  // ctx.lineTo(j * 10, b);
-  // ctx.strokeStyle = "blue";
-  // ctx.stroke();
-  //await timer(10);
-  await drawback(b, j);
+  await timer(10 );
+  ctx.clearRect( (j-1) * 10, 0, 20, canvasHeight);
+  ctx.beginPath();
+  ctx.moveTo(j * 10, canvasHeight);
+  ctx.lineWidth = 10;
+  ctx.lineTo(j * 10, b);
+  ctx.strokeStyle = "blue";
+  ctx.stroke();
+  await timer(100);
+  // await drawback(b, j);
   
 }
 

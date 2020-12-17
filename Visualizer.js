@@ -5,7 +5,7 @@ var divheight;
 var lines = new Array();
 
 window.onload = function() {
-    div.offsetwidth = window.innerWidth;
+    div.offsetwidth = window.innerWidth ;
     div.offsetheight = window.innerheight;
     divwidth = div.offsetWidth;
     divheight = div.offsetHeight;
