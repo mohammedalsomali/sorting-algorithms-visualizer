@@ -3,6 +3,7 @@ html, body
     height: 100%;
     width: 100%;
     background-color: black;
+    align-content: center;
 }
 
 /* body
@@ -11,9 +12,11 @@ html, body
     align-content: center;
     
 } */
-.my{
-    height: 100%;
-    width: 100%;
+.mydiv{
+    text-align: center;
+    
+    
+    
 }
 
 
