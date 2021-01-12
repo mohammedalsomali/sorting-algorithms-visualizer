@@ -3,7 +3,6 @@ var ctx;
 var canvasWidth;
 var canvasHeight;
 var lines = new Array();
-var data = [3,4,58,9,5,2,6,5,4];
 
 window.onload = function () {
   canvas = document.getElementById('mycanvas');
@@ -12,9 +11,9 @@ window.onload = function () {
   ctx = canvas.getContext('2d');
   canvasWidth = canvas.width;
   canvasHeight = canvas.height;
-  document.getElementById("btn").addEventListener("click", getRandomInt);
-  document.getElementById("btn2").addEventListener("click", sort);
-  document.getElementById("btn2").addEventListener("click", Quicksort(lines));
+  document.getElementById("GenarateRandom").addEventListener("click", getRandomInt);
+  document.getElementById("Basicsort").addEventListener("click", sort);
+  document.getElementById("Quicksort").addEventListener("click", runQuick);
 
   
 }
@@ -48,25 +47,20 @@ function getRandomInt() {
 function makedata() {
   ctx = canvas.getContext("2d");
   ctx.fillRect(0,0, canvasWidth, canvasHeight);
-  for (var i = 0; i < canvasWidth / 10; ++i) {
+  for (var i = -1; i < canvasWidth / 10; ++i) {
     ctx.beginPath();
     ctx.moveTo(i * 10, canvasHeight);
     ctx.lineWidth = 10;
     ctx.lineTo(i * 10, lines[i]);
     ctx.strokeStyle = "purple";
     ctx.stroke();
-    i = i + 1;
+    i += 1;
     
 
   }
 
 }
 
-
-function changecolor() {
-  return document.getElementById("mycanvas").style.backgroundColor = 'red';
-
-}
 
 
 
@@ -75,37 +69,37 @@ function changecolor() {
 
 async function sort() {
   
-  for (var i = 0; i < lines.length ; ++i) {
-    await draw(lines[i], i);
+  for (var i = -1; i < lines.length ; ++i) {
+    await draw_colums(lines[i], i);
     
     for (var j = 0; j < lines.length - i; ++j) {
-      await draw(lines[i+j], i+ j);
+      await draw_colums(lines[i+j], i+ j);
       
       if (lines[i] > lines[i + j]) {
         temp = lines[i];
         lines[i] = lines[j + i];
         lines[i + j] = temp;
-        await swap(lines[i] ,lines[i + j], i, i + j );
-        await drawback(lines[i+j], i+j);
+        await swap_colums(lines[i] ,lines[i + j], i, i + j );
+        await drawback_colums(lines[i+j], i+j);
       
       }
       else{
          
-        await drawback(lines[i + j], i + j);
+        await drawback_colums(lines[i + j], i + j);
         
       }
         
       j = j + 1;
       
     }
-    await drawback(lines[i], i);
+    await drawback_colums(lines[i], i);
     i = i + 1;
   }
   
   
 }
 
-async function draw(b,i){
+async function draw_colums(b,i){
   
   ctx.beginPath();
   ctx.moveTo(i * 10, canvasHeight);
@@ -117,7 +111,7 @@ async function draw(b,i){
   
 }
 
-async function drawback(b,i){
+async function drawback_colums(b,i){
   ctx.beginPath();
   ctx.moveTo(i  * 10, canvasHeight);
   ctx.lineWidth = 10;
@@ -131,7 +125,7 @@ async function drawback(b,i){
 
 
 
-async function swap(a,b, i,j) {
+async function swap_colums(a,b, i,j) {
   ctx.clearRect(i * 10, 0, 10, canvasHeight);
   ctx.beginPath();
   ctx.moveTo(i * 10, canvasHeight);
@@ -151,23 +145,52 @@ async function swap(a,b, i,j) {
 }
 
 
-function Quicksort(data) {
-  pivot_piont = data.lenght;
-  pivot_vlaue = data[pivot_piont];
-  for (var i = 0; i <= pivot_piont; i++) {
-    if ((data[i] >= pivot_vlaue) && (pivot_piont >= i)) {
-      temp = data[i];
-      data[i] = pivot_vlaue;
-      pivot_vlaue = temp;
-      pivot_piont = i;
-      console.log(data);
-
-    }
+function swap(items, leftIndex, rightIndex){
+  var temp = items[leftIndex];
+  items[leftIndex] = items[rightIndex];
+  items[rightIndex] = temp;
+}
+async function partition(items, left, right) {
+  var mid = Math.floor((right + left) / 2);
+  var pivot   = items[mid], //middle element
+      i       = left, //left pointer
+      j       = right; //right pointer
+      await draw_colums(pivot, mid)
+  while (i <= j) {
+      await draw_colums(items[i], i)
+      while (items[i] < pivot) {
+          i++;
+      }
+      await drawback_colums(items[i], i)
+      while (items[j] > pivot) {
+          j--;
+      }
+      if (i <= j) {
+          swap(items, i, j); //sawpping two elements
+          i++;
+          j--;
+      }
   }
+  return i;
+}
 
-
+function quickSort(items, left, right) {
+  var index;
+  if (items.length > 1) {
+      index = partition(items, left, right); //index returned from partition
+      if (left < index - 1) { //more elements on the left side of the pivot
+          quickSort(items, left, index - 1);
+      }
+      if (index < right) { //more elements on the right side of the pivot
+          quickSort(items, index, right);
+      }
+  }
+  return items;
 }
 
 
-
+function runQuick(){
+  let x = quickSort(lines, 0, lines.length -1);
+  console.log(x)
+}
 function timer(ms){return new Promise(res => setTimeout(res, ms));}
