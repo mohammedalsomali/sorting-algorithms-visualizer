@@ -96,7 +96,7 @@ async function sort() {
     i = i + 1;
   }
   
-  
+  console.log(lines);
 }
 
 async function draw_colums(b,i){
@@ -145,38 +145,47 @@ async function swap_colums(a,b, i,j) {
 }
 
 
-function swap(items, leftIndex, rightIndex){
+async function swap(items, leftIndex, rightIndex){
   var temp = items[leftIndex];
   items[leftIndex] = items[rightIndex];
   items[rightIndex] = temp;
+  await swap_colums(items[rightIndex], items[leftIndex], rightIndex + 1,leftIndex + 1);
 }
 async function partition(items, left, right) {
   var mid = Math.floor((right + left) / 2);
   var pivot   = items[mid], //middle element
       i       = left, //left pointer
       j       = right; //right pointer
-      await draw_colums(pivot, mid)
+      await draw_colums(pivot, mid + 1);
   while (i <= j) {
-      await draw_colums(items[i], i)
+      // await draw_colums(items[j], j + 1);
       while (items[i] < pivot) {
           i++;
+          await draw_colums(items[j], j + 1);
       }
-      await drawback_colums(items[i], i)
+      // await draw_colums(items[i], i + 1);
       while (items[j] > pivot) {
+          await draw_colums(items[j], j + 1);
           j--;
+
       }
       if (i <= j) {
           swap(items, i, j); //sawpping two elements
           i++;
           j--;
       }
+      drawback_colums(items[i], i + 1);
   }
   return i;
 }
 
 function quickSort(items, left, right) {
+  let w = 0;
   var index;
+  
   if (items.length > 1) {
+      w = w + 1;
+      console.log(w);
       index = partition(items, left, right); //index returned from partition
       if (left < index - 1) { //more elements on the left side of the pivot
           quickSort(items, left, index - 1);
@@ -184,6 +193,7 @@ function quickSort(items, left, right) {
       if (index < right) { //more elements on the right side of the pivot
           quickSort(items, index, right);
       }
+      
   }
   return items;
 }
@@ -191,6 +201,6 @@ function quickSort(items, left, right) {
 
 function runQuick(){
   let x = quickSort(lines, 0, lines.length -1);
-  console.log(x)
+  // console.log(lines, x);
 }
 function timer(ms){return new Promise(res => setTimeout(res, ms));}
