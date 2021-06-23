@@ -1,27 +1,31 @@
-# def twoSum(nums1, nums2):
-#         if len(nums1) != 0:
-#             for i in range(len(nums1)):
-#                 nums2.append(nums1[i])
-#             for i in range(len(nums2)):
-#                 for j in range(1, len(nums2)-i):
-#                     if nums2[i]> nums2[i+j]:
-#                         nums2[i],nums2[i+j]=nums2[i+j],nums2[i]
-#         x = len(nums2)/2
-#         if len(nums2) %2 == 0:
-#             y = nums2[int(x)] 
-#             z = nums2[int(x-1)] 
-#             return ( y + z ) /2
-#         else:
-#             return nums2[x]
+def reverse(x):
 
+    i = 0
+    newx = 0
+    while x != 0:
+        if x > 0:
+            y = x % 10
+            newx = newx * 10 + y
+            x = x//10
+        else:
+            i += 1
+            x = x * -1
+            y = x % 10
+            newx = newx * 10 + y
+            x = x//10
 
-# def main():
-#     x = twoSum([], [3,8])
+    if i > 0:
+        newx = newx * -1
+    minx = -2**31
+    maxx = 2**31 - 1
 
-#     print(x)
+    if minx  >= newx or newx >= maxx:
+        return 0
 
-# main()
+    return newx
 
-a = ["3","4","7"]
-b = "".join(a)
-print(int(b))
+def main():
+    x = -112334575
+    w = reverse(x)
+    print(w)
+main()
