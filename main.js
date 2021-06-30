@@ -1,4 +1,12 @@
 var container = document.getElementById("array");
+var slider = document.getElementById("myRange");
+// var output = document.getElementById("demo");
+var num = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function () {
+  num = this.value;
+}
 
 
 window.onload = function () {
@@ -13,7 +21,7 @@ window.onload = function () {
   
 // Function to generate the array of blocks
 function generatearray() {
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < num + 1; i++) {
     // Return a value from 1 to 100 (both inclusive)
     var value = Math.ceil(Math.random() * 100);
   
@@ -45,7 +53,7 @@ function generatearray() {
 var count_container = 
 document.getElementById("count");
 function generate_idx() {
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < num + 1; i++) {
     // Creating element div
     var array_ele2 = document.createElement("div");
   
@@ -72,10 +80,11 @@ function generate_idx() {
 async function lometo_partition(l, r, delay = 100) {
   
   var blocks = document.querySelectorAll(".block");
-  
+  console.log(Number(blocks[0].childNodes[0].innerHTML))
+  console.log(num);
   // Storing the value of pivot element
   var pivot = 
-  Number(blocks[r].childNodes[0].innerHTML);
+  Number(blocks[num].childNodes[0].innerHTML);
   var i = l - 1;
   blocks[r].style.backgroundColor = "red";
   document.
@@ -119,7 +128,7 @@ async function lometo_partition(l, r, delay = 100) {
     }, delay * 3)
   );
   document.getElementsByClassName("range")[0].innerText = "";
-  for (var k = 0; k < 20; k++) 
+  for (var k = 0; k < num + 1; k++) 
   blocks[k].style.backgroundColor = "#6b5b95";
   return i;
 }
@@ -175,7 +184,7 @@ async function QuickSort(l, r, delay = 100) {
 // QuickSort(0, 19);
 
 function Sort(){
-    return QuickSort(0,19)
+    return QuickSort(0,num)
 }
 
 
@@ -183,13 +192,13 @@ async function basic_sort() {
   var blocks = document.querySelectorAll(".block");
   console.log(Number(blocks[0].childNodes[0].innerHTML))
   document.
-  getElementsByClassName("range")[0].innerText = `[${0},${19}]`;
+  getElementsByClassName("range")[0].innerText = `[${0},${num}]`;
   
   // document.getElementsByClassName("range")[0].innerText = `[${l},${r}]`;
-  for (var i = 0; i <= 19; ++i) {
+  for (var i = 0; i <= num; ++i) {
     blocks[i].style.backgroundColor = "red";
 
-    for (var j = 1; j <= 19 - i; ++j) {
+    for (var j = 1; j <= num - i; ++j) {
       blocks[j + i].style.backgroundColor = "orange";
       
       await new Promise((resolve) =>
