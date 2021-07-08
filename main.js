@@ -2,6 +2,7 @@ var container = document.getElementById("array");
 var slider = document.getElementById("myRange");
 // var output = document.getElementById("demo");
 var num = slider.value; // Display the default slider value
+console.log(num);
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function () {
@@ -18,10 +19,17 @@ window.onload = function () {
   
     
   }
+
+// Function to delete existing array of blocks
+function ClearAll(){
+  container.innerHTML = "";//remove all child elements inside of myDiv
+
+}
   
 // Function to generate the array of blocks
 function generatearray() {
-  for (var i = 0; i < num + 1; i++) {
+  ClearAll();
+  for (var i = 0; i <= num ; i++) {
     // Return a value from 1 to 100 (both inclusive)
     var value = Math.ceil(Math.random() * 100);
   
@@ -45,15 +53,18 @@ function generatearray() {
     // Appending created elements to index.html
     array_ele.appendChild(array_ele_label);
     container.appendChild(array_ele);
-    generate_idx();
+    // console.log(i, num);
+
+   
   }
+  generate_idx();
 }
   
 // Function to generate indexes
 var count_container = 
 document.getElementById("count");
 function generate_idx() {
-  for (var i = 0; i < num + 1; i++) {
+  for (var i = 0; i <= num ; i++) {
     // Creating element div
     var array_ele2 = document.createElement("div");
   
@@ -73,6 +84,23 @@ function generate_idx() {
     // Appending created elements to index.html
     array_ele2.appendChild(array_ele_label2);
     count_container.appendChild(array_ele2);
+    console.log(i, num);
+  }
+}
+// cllaing the QuickSort function
+function Sort(){
+  return QuickSort(0,num)
+}
+
+// Asynchronous QuickSort function
+async function QuickSort(l, r, delay = 100) {
+  if (l < r) {
+    // Storing the index of pivot element after partition
+    var pivot_idx = await lometo_partition(l, r);
+    // Recursively calling quicksort for left partition
+    await QuickSort(l, pivot_idx - 1);
+    // Recursively calling quicksort for right partition
+    await QuickSort(pivot_idx + 1, r);
   }
 }
 
@@ -80,11 +108,11 @@ function generate_idx() {
 async function lometo_partition(l, r, delay = 100) {
   
   var blocks = document.querySelectorAll(".block");
-  console.log(Number(blocks[0].childNodes[0].innerHTML))
-  console.log(num);
+  // console.log(Number(blocks[0].childNodes[0].innerHTML))
+  
   // Storing the value of pivot element
   var pivot = 
-  Number(blocks[num].childNodes[0].innerHTML);
+  Number(blocks[r].childNodes[0].innerHTML);
   var i = l - 1;
   blocks[r].style.backgroundColor = "red";
   document.
@@ -128,10 +156,12 @@ async function lometo_partition(l, r, delay = 100) {
     }, delay * 3)
   );
   document.getElementsByClassName("range")[0].innerText = "";
-  for (var k = 0; k < num + 1; k++) 
+  for (var k = 0; k <= num ; k++) 
   blocks[k].style.backgroundColor = "#6b5b95";
   return i;
 }
+
+
   
 // comparing to columns 
 function draw_comparison(i, j, blocks){
@@ -162,30 +192,9 @@ function draw_swaping(i, r, blocks) {
 }
 
 
-// Asynchronous QuickSort function
-async function QuickSort(l, r, delay = 100) {
-  if (l < r) {
-    // Storing the index of pivot element after partition
-    var pivot_idx = await lometo_partition(l, r);
-    // Recursively calling quicksort for left partition
-    await QuickSort(l, pivot_idx - 1);
-    // Recursively calling quicksort for right partition
-    await QuickSort(pivot_idx + 1, r);
-  }
-}
-  
-// Calling generatearray function
-// generatearray();
-  
-// // Calling generate_idx function
-// generate_idx();
-  
-// // Calling QuickSort function
-// QuickSort(0, 19);
 
-function Sort(){
-    return QuickSort(0,num)
-}
+
+
 
 
 async function basic_sort() {
@@ -207,7 +216,7 @@ async function basic_sort() {
         }, 100)
       );
 
-      if (Number(blocks[i].childNodes[0].innerHTML) < Number(blocks[i + j].childNodes[0].innerHTML)) {
+      if (Number(blocks[i].childNodes[0].innerHTML) > Number(blocks[i + j].childNodes[0].innerHTML)) {
         
         await draw_swaping( i , j +  i, blocks);
         // drawback_colums(lines[i + j], i + j);
