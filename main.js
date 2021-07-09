@@ -22,7 +22,10 @@ window.onload = function () {
 
 // Function to delete existing array of blocks
 function ClearAll(){
-  container.innerHTML = "";//remove all child elements inside of myDiv
+  container.innerHTML = "";//remove all child elements inside of container
+  count_container.innerHTML = "";//remove all child elements inside of count_container
+
+
 
 }
   

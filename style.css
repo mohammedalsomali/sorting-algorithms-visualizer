@@ -1,8 +1,10 @@
-/* {
-  margin: 0px;
-  padding: 0px;
+* {
+  margin:0;
+  padding:0;
   box-sizing: border-box;
-} */
+}
+
+
 .header {
   font-size: 20px;
   text-align: center;
@@ -14,7 +16,9 @@
   margin: auto;
   position: relative;
   margin-top: 64px;
+  
 }
+
 .block {
   width: 28px;
   background-color: #6b5b95;
@@ -49,10 +53,12 @@
   width: 100%;
   text-align: center;
 }
+
 #count {
   height: 20px;
   width: 598px;
   margin: auto;
+ 
 }
 
 /* Mouse-over effects */
