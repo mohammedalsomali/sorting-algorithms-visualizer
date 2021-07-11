@@ -1,12 +1,31 @@
 var container = document.getElementById("array");
 var slider = document.getElementById("myRange");
-// var output = document.getElementById("demo");
+var slider1 = document.getElementById("myRange1");
+
+
 var num = slider.value; // Display the default slider value
-console.log(num);
+var delay = slider1.value;
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function () {
   num = this.value;
+  console.log(num);
+  updateTextInput(num);
+}
+
+function updateTextInput(num) {
+  console.log(num);
+  document.getElementById('columsInput').innerHTML=num; 
+}
+
+
+function updateTextInput1(delay) {
+  document.getElementById('delayInput').innerText=delay; 
+}
+
+slider1.oninput = function () {
+  delay = this.value;
+  updateTextInput1(delay);
 }
 
 
@@ -14,7 +33,7 @@ window.onload = function () {
     var blocks = document.querySelectorAll(".block");
     
     document.getElementById("GenarateRandom").addEventListener("click", generatearray);
-    document.getElementById("Basicsort").addEventListener("click", basic_sort);
+    document.getElementById("Basicsort").addEventListener("click", Bubble_sort);
     document.getElementById("Quicksort").addEventListener("click", Sort);
   
     
@@ -92,11 +111,11 @@ function generate_idx() {
 }
 // cllaing the QuickSort function
 function Sort(){
-  return QuickSort(0,num)
+  return QuickSort(0,num, delay)
 }
 
 // Asynchronous QuickSort function
-async function QuickSort(l, r, delay = 100) {
+async function QuickSort(l, r, delay) {
   if (l < r) {
     // Storing the index of pivot element after partition
     var pivot_idx = await lometo_partition(l, r);
@@ -108,7 +127,7 @@ async function QuickSort(l, r, delay = 100) {
 }
 
 
-async function lometo_partition(l, r, delay = 100) {
+async function lometo_partition(l, r, delay1) {
   
   var blocks = document.querySelectorAll(".block");
   // console.log(Number(blocks[0].childNodes[0].innerHTML))
@@ -199,14 +218,12 @@ function draw_swaping(i, r, blocks) {
 
 
 
-
-async function basic_sort() {
+async function Bubble_sort() {
   var blocks = document.querySelectorAll(".block");
-  console.log(Number(blocks[0].childNodes[0].innerHTML))
-  document.
+  
   getElementsByClassName("range")[0].innerText = `[${0},${num}]`;
   
-  // document.getElementsByClassName("range")[0].innerText = `[${l},${r}]`;
+  
   for (var i = 0; i <= num; ++i) {
     blocks[i].style.backgroundColor = "red";
 
@@ -216,7 +233,7 @@ async function basic_sort() {
       await new Promise((resolve) =>
         setTimeout(() => {
           resolve();
-        }, 100)
+        }, delay)
       );
 
       if (Number(blocks[i].childNodes[0].innerHTML) > Number(blocks[i + j].childNodes[0].innerHTML)) {
@@ -226,7 +243,7 @@ async function basic_sort() {
         await new Promise((resolve) =>
           setTimeout(() => {
             resolve();
-          }, 100)
+          }, delay)
         );
 
 
@@ -245,3 +262,6 @@ async function basic_sort() {
   }
 
 }
+
+
+// neeeded to add 2 more sorting algho's
