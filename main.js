@@ -1,31 +1,33 @@
 var container = document.getElementById("array");
 var slider = document.getElementById("myRange");
 var slider1 = document.getElementById("myRange1");
-
+var flag = 0;
 
 var num = slider.value; // Display the default slider value
 var delay = slider1.value;
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function () {
+  flag = 1;
   num = this.value;
-  console.log(num);
+  // console.log(num);
+  generatearray();
   updateTextInput(num);
 }
 
-function updateTextInput(num) {
-  console.log(num);
-  document.getElementById('columsInput').innerHTML=num; 
+function updateTextInput(a) {
+  // console.log(a);
+  document.getElementById("columsInput").value = "number of colums " + a; 
 }
 
 
-function updateTextInput1(delay) {
-  document.getElementById('delayInput').innerText=delay; 
+function updateTextInput1() {
+  document.getElementById("delayInput").value = "delay time in ml " + delay; 
 }
 
 slider1.oninput = function () {
   delay = this.value;
-  updateTextInput1(delay);
+  updateTextInput1();
 }
 
 
@@ -106,10 +108,10 @@ function generate_idx() {
     // Appending created elements to index.html
     array_ele2.appendChild(array_ele_label2);
     count_container.appendChild(array_ele2);
-    console.log(i, num);
+    // console.log(i, num);
   }
 }
-// cllaing the QuickSort function
+// claing the QuickSort function
 function Sort(){
   return QuickSort(0,num, delay)
 }
@@ -128,7 +130,7 @@ async function QuickSort(l, r, delay) {
 
 
 async function lometo_partition(l, r, delay1) {
-  
+  flag = 0
   var blocks = document.querySelectorAll(".block");
   // console.log(Number(blocks[0].childNodes[0].innerHTML))
   
@@ -152,7 +154,10 @@ async function lometo_partition(l, r, delay1) {
     );
     var value = 
     Number(blocks[j].childNodes[0].innerHTML);
-  
+    //  kill condition to stop the function 
+    if (flag == 1){
+      return 
+    }
     // To compare value of two blocks
     if (value < pivot) {
       i++;
@@ -179,6 +184,9 @@ async function lometo_partition(l, r, delay1) {
   );
   document.getElementsByClassName("range")[0].innerText = "";
   for (var k = 0; k <= num ; k++) 
+  if (flag == 1){
+    return 
+  }
   blocks[k].style.backgroundColor = "#6b5b95";
   return i;
 }
@@ -221,15 +229,18 @@ function draw_swaping(i, r, blocks) {
 async function Bubble_sort() {
   var blocks = document.querySelectorAll(".block");
   
-  getElementsByClassName("range")[0].innerText = `[${0},${num}]`;
-  
-  
+  flag = 0
+
+
   for (var i = 0; i <= num; ++i) {
     blocks[i].style.backgroundColor = "red";
-
+    
     for (var j = 1; j <= num - i; ++j) {
+      if (flag == 1){
+        return ;
+      }
       blocks[j + i].style.backgroundColor = "orange";
-      
+      document.getElementsByClassName("range")[0].innerText = `[${i},${j}]`;
       await new Promise((resolve) =>
         setTimeout(() => {
           resolve();
@@ -237,8 +248,8 @@ async function Bubble_sort() {
       );
 
       if (Number(blocks[i].childNodes[0].innerHTML) > Number(blocks[i + j].childNodes[0].innerHTML)) {
-        
-        await draw_swaping( i , j +  i, blocks);
+
+        await draw_swaping(i, j + i, blocks);
         // drawback_colums(lines[i + j], i + j);
         await new Promise((resolve) =>
           setTimeout(() => {
@@ -251,15 +262,17 @@ async function Bubble_sort() {
 
       else {
 
-    
-    blocks[j+ i].style.backgroundColor = "pink";
+
+        blocks[j + i].style.backgroundColor = "pink";
 
       }
-      
-      
+
+
     }
     blocks[i].style.backgroundColor = "#6b5b95";
   }
+
+
 
 }
 
