@@ -1,10 +1,10 @@
 var container = document.getElementById("array");
 var slider = document.getElementById("myRange");
 var slider1 = document.getElementById("myRange1");
-var flag = 0;
+var flag = 0; //random variable to use as kill switch for the functions
 
 var num = slider.value; // Display the default slider value
-var delay = slider1.value;
+var delay = slider1.value; // Display the default slider value
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function () {
@@ -15,16 +15,18 @@ slider.oninput = function () {
   updateTextInput(num);
 }
 
+// Update the current textbox value (each time you drag the slider handle)
 function updateTextInput(a) {
   // console.log(a);
   document.getElementById("columsInput").value = "number of colums " + a; 
 }
 
-
+// Update the current textbox value (each time you drag the slider handle)
 function updateTextInput1() {
   document.getElementById("delayInput").value = "delay time in ml " + delay; 
 }
 
+// Update the current slider value (each time you drag the slider handle)
 slider1.oninput = function () {
   delay = this.value;
   updateTextInput1();
@@ -130,7 +132,7 @@ async function QuickSort(l, r, delay) {
 
 
 async function lometo_partition(l, r, delay1) {
-  flag = 0
+  flag = 0;
   var blocks = document.querySelectorAll(".block");
   // console.log(Number(blocks[0].childNodes[0].innerHTML))
   
@@ -184,10 +186,10 @@ async function lometo_partition(l, r, delay1) {
   );
   document.getElementsByClassName("range")[0].innerText = "";
   for (var k = 0; k <= num ; k++) 
+  blocks[k].style.backgroundColor = "#6b5b95";
   if (flag == 1){
     return 
   }
-  blocks[k].style.backgroundColor = "#6b5b95";
   return i;
 }
 
@@ -225,11 +227,11 @@ function draw_swaping(i, r, blocks) {
 
 
 
-
+// Asynchronous Bubble Sort function
 async function Bubble_sort() {
   var blocks = document.querySelectorAll(".block");
   
-  flag = 0
+  flag = 0;
 
 
   for (var i = 0; i <= num; ++i) {
