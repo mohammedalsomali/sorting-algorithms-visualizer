@@ -37,7 +37,7 @@ window.onload = function () {
     var blocks = document.querySelectorAll(".block");
     
     document.getElementById("GenarateRandom").addEventListener("click", generatearray);
-    document.getElementById("Basicsort").addEventListener("click", Bubble_sort);
+    document.getElementById("Basicsort").addEventListener("click", Selection_sort);
     document.getElementById("Quicksort").addEventListener("click", Sort);
   
     
@@ -227,8 +227,8 @@ function draw_swaping(i, r, blocks) {
 
 
 
-// Asynchronous Bubble Sort function
-async function Bubble_sort() {
+// Asynchronous Selection Sort function
+async function Selection_sort() {
   var blocks = document.querySelectorAll(".block");
   
   flag = 0;
