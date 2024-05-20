@@ -4,18 +4,26 @@
   box-sizing: border-box;
 }
 
+body {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+}
+
 
 .header {
   font-size: 20px;
   text-align: center;
 }
 #array {
+  
   background-color: white;
-  height: 278px;
-  width: 598px;
+  height: 75%;
+  width: 80%;
   margin: auto;
   position: relative;
-  margin-top: 64px;
+  /* margin-top: 64px; */
   
 }
 
@@ -29,6 +37,7 @@
 .block_id {
   position: absolute;
   color: black;
+  margin-left: -15px;
   margin-top: -20px;
   width: 100%;
   text-align: center;
@@ -45,9 +54,10 @@
   background-color: darkgray;
   position: absolute;
   transition: 0.2s all ease;
+  
 }
 .block_id3 {
-  position: absolute;
+  /* position: absolute; */
   color: black;
   margin-top: 1px;
   width: 100%;
@@ -56,8 +66,9 @@
 
 #count {
   height: 20px;
-  width: 598px;
+  width: 80%;
   margin: auto;
+  align-items: center;
  
 }
 
@@ -67,7 +78,3 @@
 }
 
 
-.body {
-  text-align: center;
-  
-}
