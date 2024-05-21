@@ -55,9 +55,10 @@ function ClearAll(){
 // Function to generate the array of blocks
 function generatearray() {
   ClearAll();
+  flag = 1;
   for (var i = 0; i <= num ; i++) {
     // Return a value from 1 to 100 (both inclusive)
-    var value = Math.ceil(Math.random() * 100);
+    var value = Math.ceil(Math.random() * 180);
   
     // Creating element div
     var array_ele = document.createElement("div");
@@ -120,7 +121,11 @@ function Sort(){
 
 // Asynchronous QuickSort function
 async function QuickSort(l, r, delay) {
+  if(flag == 0){
+    return
+  }
   if (l < r) {
+
     // Storing the index of pivot element after partition
     var pivot_idx = await lometo_partition(l, r);
     // Recursively calling quicksort for left partition
@@ -128,6 +133,7 @@ async function QuickSort(l, r, delay) {
     // Recursively calling quicksort for right partition
     await QuickSort(pivot_idx + 1, r);
   }
+  flag == 0;
 }
 
 
@@ -229,6 +235,9 @@ function draw_swaping(i, r, blocks) {
 
 // Asynchronous Selection Sort function
 async function Selection_sort() {
+  if(flag == 0){
+    return 
+  }
   var blocks = document.querySelectorAll(".block");
   
   flag = 0;
@@ -274,7 +283,7 @@ async function Selection_sort() {
     blocks[i].style.backgroundColor = "#6b5b95";
   }
 
-
+  flag == 0;
 
 }
 
