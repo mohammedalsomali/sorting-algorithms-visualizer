@@ -23,9 +23,9 @@ body {
   width: 80%;
   margin: auto;
   position: relative;
-  display: block;
-  align-items: center;
-  /* margin-top: 64px; */
+  display: grid;
+  grid-template-columns: auto;
+  
   
 }
 
@@ -59,7 +59,6 @@ body {
   
 }
 .block_id3 {
-  /* position: absolute; */
   color: black;
   margin-top: 1px;
   width: 100%;

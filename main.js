@@ -2,6 +2,7 @@ var container = document.getElementById("array");
 var slider = document.getElementById("myRange");
 var slider1 = document.getElementById("myRange1");
 var flag = 0; //random variable to use as kill switch for the functions
+var killswitch = 0; //random variable to use as kill switch for the soritng functions
 
 var num = slider.value; // Display the default slider value
 var delay = slider1.value; // Display the default slider value
@@ -9,8 +10,8 @@ var delay = slider1.value; // Display the default slider value
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function () {
   flag = 1;
+  killswitch = 1;
   num = this.value;
-  // console.log(num);
   generatearray();
   updateTextInput(num);
 }
@@ -84,6 +85,7 @@ function generatearray() {
 
    
   }
+  killswitch = 1;
   generate_idx();
 }
   
@@ -116,14 +118,14 @@ function generate_idx() {
 }
 // claing the QuickSort function
 function Sort(){
-  return QuickSort(0,num, delay)
+  return QuickSort(0,num, delay);
+
 }
 
 // Asynchronous QuickSort function
 async function QuickSort(l, r, delay) {
-  if(flag == 0){
-    return
-  }
+  
+  console.log('start');
   if (l < r) {
 
     // Storing the index of pivot element after partition
@@ -133,7 +135,8 @@ async function QuickSort(l, r, delay) {
     // Recursively calling quicksort for right partition
     await QuickSort(pivot_idx + 1, r);
   }
-  flag == 0;
+  console.log('end');
+  
 }
 
 
@@ -196,6 +199,7 @@ async function lometo_partition(l, r, delay1) {
   if (flag == 1){
     return 
   }
+  
   return i;
 }
 
@@ -235,20 +239,26 @@ function draw_swaping(i, r, blocks) {
 
 // Asynchronous Selection Sort function
 async function Selection_sort() {
-  if(flag == 0){
-    return 
-  }
+  
+  // if(killswitch == 0){
+  //   return
+  // }
+
+  // killswitch = 0;
+  
   var blocks = document.querySelectorAll(".block");
   
-  flag = 0;
 
-
+  
   for (var i = 0; i <= num; ++i) {
+    if (flag == 0){
+      return 
+    }
     blocks[i].style.backgroundColor = "red";
     
     for (var j = 1; j <= num - i; ++j) {
-      if (flag == 1){
-        return ;
+      if (flag == 0){
+        return 
       }
       blocks[j + i].style.backgroundColor = "orange";
       document.getElementsByClassName("range")[0].innerText = `[${i},${j}]`;
@@ -283,8 +293,8 @@ async function Selection_sort() {
     blocks[i].style.backgroundColor = "#6b5b95";
   }
 
-  flag == 0;
-
+  flag = 0;
+  
 }
 
 
