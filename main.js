@@ -56,10 +56,8 @@ function sortIt(){
     Selection_sort();
   }
 
-  // sortoptions.removeAttribute("disabled");
-  // document.getElementById("Sort").removeAttribute("disabled");;
-  // document.getElementById("GenarateRandom").removeAttribute("disabled");
-  reEnableBtns();
+  
+  // reEnableBtns();
 
   
 }
@@ -146,8 +144,9 @@ function generate_idx() {
   }
 }
 // claing the QuickSort function
-function Sort(){
-  return QuickSort(0,num, delay);
+async function Sort(){
+  await QuickSort(0,num, delay); 
+  reEnableBtns();
 
 }
 
@@ -317,8 +316,9 @@ async function Selection_sort() {
     }
     blocks[i].style.backgroundColor = "#6b5b95";
   }
-
+  
   flag = 0;
+  reEnableBtns();
   
 }
 
