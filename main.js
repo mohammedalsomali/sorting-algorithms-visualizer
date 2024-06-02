@@ -2,7 +2,6 @@ var container = document.getElementById("array");
 var slider = document.getElementById("myRange");
 var slider1 = document.getElementById("myRange1");
 var flag = 0; //random variable to use as kill switch for the functions
-var killswitch = 0; //random variable to use as kill switch for the soritng functions
 
 var num = slider.value; // Display the default slider value
 var delay = slider1.value; // Display the default slider value
@@ -10,7 +9,6 @@ var delay = slider1.value; // Display the default slider value
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function () {
   flag = 1;
-  killswitch = 1;
   num = this.value;
   generatearray();
   updateTextInput(num);
@@ -38,11 +36,42 @@ window.onload = function () {
     var blocks = document.querySelectorAll(".block");
     
     document.getElementById("GenarateRandom").addEventListener("click", generatearray);
-    document.getElementById("Basicsort").addEventListener("click", Selection_sort);
-    document.getElementById("Quicksort").addEventListener("click", Sort);
+    document.getElementById("Sort").addEventListener("click", sortIt);
   
     
   }
+
+function sortIt(){
+  var sortoptions = document.getElementById("sortType");
+  var selectedOption = sortoptions.value;
+  sortoptions.disabled = true;
+  document.getElementById("Sort").disabled = true;
+  document.getElementById("GenarateRandom").disabled = true;
+  slider.disabled = true;
+
+  if(selectedOption == 'Quick'){
+    Sort();
+  }
+  else if(selectedOption == 'Selection'){
+    Selection_sort();
+  }
+
+  // sortoptions.removeAttribute("disabled");
+  // document.getElementById("Sort").removeAttribute("disabled");;
+  // document.getElementById("GenarateRandom").removeAttribute("disabled");
+  reEnableBtns();
+
+  
+}
+
+
+function reEnableBtns(){
+  document.getElementById("sortType").disabled = false;
+  document.getElementById("Sort").disabled = false;
+  document.getElementById("GenarateRandom").disabled = false;
+  slider.disabled = false;
+
+}
 
 // Function to delete existing array of blocks
 function ClearAll(){
@@ -85,7 +114,7 @@ function generatearray() {
 
    
   }
-  killswitch = 1;
+  
   generate_idx();
 }
   
@@ -240,11 +269,7 @@ function draw_swaping(i, r, blocks) {
 // Asynchronous Selection Sort function
 async function Selection_sort() {
   
-  // if(killswitch == 0){
-  //   return
-  // }
-
-  // killswitch = 0;
+  
   
   var blocks = document.querySelectorAll(".block");
   
@@ -298,4 +323,4 @@ async function Selection_sort() {
 }
 
 
-// neeeded to add 2 more sorting algho's
+
