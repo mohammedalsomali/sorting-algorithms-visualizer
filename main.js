@@ -68,8 +68,8 @@ function reEnableBtns(){
   document.getElementById("Sort").disabled = false;
   document.getElementById("GenarateRandom").disabled = false;
   slider.disabled = false;
-
-}
+    
+  }
 
 // Function to delete existing array of blocks
 function ClearAll(){
@@ -79,7 +79,7 @@ function ClearAll(){
 
 
 }
-  
+
 // Function to generate the array of blocks
 function generatearray() {
   ClearAll();
@@ -316,7 +316,7 @@ async function Selection_sort() {
     }
     blocks[i].style.backgroundColor = "#6b5b95";
   }
-  
+
   flag = 0;
   reEnableBtns();
   
