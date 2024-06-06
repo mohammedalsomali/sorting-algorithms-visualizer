@@ -1,13 +1,13 @@
-* {
+/* * {
   margin:0;
   padding:0;
   box-sizing: border-box;
-}
+} */
 
 body {
   display: block;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   text-align: center;
 }
 
@@ -21,13 +21,10 @@ body {
   background-color: white;
   height: 75%;
   width: 80%;
-  margin: auto;
   position: relative;
   display: flex;
-  flex-direction: rows;
-  gap: 0px;
-  align-items: flex-end;
   justify-content: center;
+  align-items: flex-end;
   
   
 }
@@ -58,7 +55,7 @@ body {
 .block2 {
   width: 28px;
   background-color: darkgray;
-  position: absolute;
+  /* position: absolute; */
   transition: 0.2s all ease;
   
 }
@@ -72,9 +69,10 @@ body {
 #count {
   height: 20px;
   width: 80%;
-  margin: auto;
-  align-items: center;
- 
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 /* Mouse-over effects */
