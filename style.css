@@ -24,8 +24,10 @@ body {
   margin: auto;
   position: relative;
   display: flex;
-  grid-template-rows: auto;
-  align-items: center;
+  flex-direction: rows;
+  gap: 0px;
+  align-items: flex-end;
+  justify-content: center;
   
   
 }
@@ -33,9 +35,10 @@ body {
 .block {
   width: 28px;
   background-color: #6b5b95;
-  position:absolute;
+  /* position:absolute; */
   bottom: 0px;
   transition: 0.2s all ease;
+  
 }
 .block_id {
   position: absolute;
