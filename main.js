@@ -124,7 +124,7 @@ function generate_idx() {
     // Creating element div
     var array_ele2 = document.createElement("col");
   
-    // Adding class 'block2' to div
+    // Adding class 'block2' to col
     array_ele2.classList.add("block2");
   
     // Adding style to div
