@@ -89,7 +89,7 @@ function generatearray() {
     var value = Math.ceil(Math.random() * 180);
   
     // Creating element div
-    var array_ele = document.createElement("div");
+    var array_ele = document.createElement("col");
   
     // Adding class 'block' to div
     array_ele.classList.add("block");
@@ -122,7 +122,7 @@ document.getElementById("count");
 function generate_idx() {
   for (var i = 0; i <= num ; i++) {
     // Creating element div
-    var array_ele2 = document.createElement("div");
+    var array_ele2 = document.createElement("col");
   
     // Adding class 'block2' to div
     array_ele2.classList.add("block2");
