@@ -86,7 +86,7 @@ function generatearray() {
   flag = 1;
   for (var i = 0; i <= num ; i++) {
     // Return a value from 1 to 100 (both inclusive)
-    var value = Math.ceil(Math.random() * 180);
+    var value = Math.ceil(Math.random() * 140);
   
     // Creating element div
     var array_ele = document.createElement("div");
