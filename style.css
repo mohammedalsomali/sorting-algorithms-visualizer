@@ -9,6 +9,7 @@ body {
   height: 100%;
   width: 100%;
   text-align: center;
+  min-width: fit-content;
 }
 
 
@@ -20,8 +21,6 @@ body {
   
   background-color: white;
   height: 60vh;
-  width: 80%;
-  /* position: relative; */
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -30,11 +29,11 @@ body {
 }
 
 .block {
-  width: 28px;
+  width: 25px;
   background-color: #6b5b95;
-  /* position:absolute; */
-  bottom: 0px;
   transition: 0.2s all ease;
+  transform: translateZ(10px);
+  margin-right: 1px;
   
 }
 .block_id {
@@ -46,17 +45,18 @@ body {
   text-align: center;
 }
 .block_id2 {
-  position: absolute;
+  /* position: absolute; */
   color: black;
   margin-top: 22px;
   width: 100%;
   text-align: center;
 }
 .block2 {
-  width: 28px;
+  width: 25px;
   background-color: darkgray;
-  /* position: absolute; */
   transition: 0.2s all ease;
+  /* transform: translateZ(10px); */
+  margin-right: 1px;
   
 }
 .block_id3 {
@@ -68,11 +68,11 @@ body {
 
 #count {
   height: 20px;
-  width: 80%;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  
+
 }
 
 /* Mouse-over effects */

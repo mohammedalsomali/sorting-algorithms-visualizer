@@ -96,7 +96,7 @@ function generatearray() {
   
     // Adding style to div
     array_ele.style.height = `${value * 3}px`;
-    array_ele.style.transform = `translate(${i * 10}px)`;
+    
   
     // Creating label element for displaying
     // size of particular block
@@ -124,12 +124,9 @@ function generate_idx() {
     // Creating element div
     var array_ele2 = document.createElement("div");
   
-    // Adding class 'block2' to col
+    // Adding class 'block2' to div
     array_ele2.classList.add("block2");
   
-    // Adding style to div
-    array_ele2.style.height = `${20}px`;
-    array_ele2.style.transform = `translate(${i * 10}px)`;
   
     // Adding indexes
     var array_ele_label2 = 
