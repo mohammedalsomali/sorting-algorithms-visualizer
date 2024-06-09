@@ -1,15 +1,17 @@
-/* * {
+* {
   margin:0;
   padding:0;
   box-sizing: border-box;
-} */
+}
 
 body {
   display: block;
-  height: 100%;
-  width: 100%;
+  align-content: center;
+  height: 100vh;
+  width: 100vw;
   text-align: center;
-  min-width: fit-content;
+
+  
 }
 
 
@@ -17,6 +19,12 @@ body {
   font-size: 20px;
   text-align: center;
 }
+
+
+#headerdiv {
+  height: 15vh;
+}
+
 #array {
   
   background-color: white;
@@ -81,3 +89,20 @@ body {
 }
 
 
+@media only screen and (max-width: 500px) {
+  label {
+      display: none;
+  }
+
+}
+
+@media only screen and (max-height: 650px) {
+  #headerdiv {
+      display: none;
+  }
+
+  .block_id {
+    display: none;
+  }
+
+}
