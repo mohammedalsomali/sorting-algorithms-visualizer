@@ -1,14 +1,13 @@
 var container = document.getElementById("array");
 var slider = document.getElementById("myRange");
 var slider1 = document.getElementById("myRange1");
-var flag = 0; //random variable to use as kill switch for the functions
 
 var num = slider.value; // Display the default slider value
 var delay = slider1.value; // Display the default slider value
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function () {
-  flag = 1;
+  
   num = this.value;
   generatearray();
   updateTextInput(num);
@@ -34,7 +33,7 @@ slider1.oninput = function () {
 
 window.onload = function () {
     var blocks = document.querySelectorAll(".block");
-    
+    generatearray();
     document.getElementById("GenarateRandom").addEventListener("click", generatearray);
     document.getElementById("Sort").addEventListener("click", sortIt);
   
@@ -83,7 +82,7 @@ function ClearAll(){
 // Function to generate the array of blocks
 function generatearray() {
   ClearAll();
-  flag = 1;
+
   for (var i = 0; i <= num ; i++) {
     // Return a value from 1 to 100 (both inclusive)
     var value = Math.ceil(Math.random() * 140);
@@ -166,7 +165,7 @@ async function QuickSort(l, r, delay) {
 
 
 async function lometo_partition(l, r, delay1) {
-  flag = 0;
+ 
   var blocks = document.querySelectorAll(".block");
   // console.log(Number(blocks[0].childNodes[0].innerHTML))
   
@@ -190,10 +189,7 @@ async function lometo_partition(l, r, delay1) {
     );
     var value = 
     Number(blocks[j].childNodes[0].innerHTML);
-    //  kill condition to stop the function 
-    if (flag == 1){
-      return 
-    }
+    
     // To compare value of two blocks
     if (value < pivot) {
       i++;
@@ -221,9 +217,7 @@ async function lometo_partition(l, r, delay1) {
   document.getElementsByClassName("range")[0].innerText = "";
   for (var k = 0; k <= num ; k++) 
   blocks[k].style.backgroundColor = "#6b5b95";
-  if (flag == 1){
-    return 
-  }
+  
   
   return i;
 }
@@ -246,7 +240,7 @@ function draw_comparison(i, j, blocks){
 
 
 
-function draw_swaping(i, r, blocks) {
+async function draw_swaping(i, r, blocks) {
   var temp1 = blocks[i].style.height;
   var temp2 = blocks[i].childNodes[0].innerText;
   blocks[i].style.height = blocks[r].style.height;
@@ -272,15 +266,11 @@ async function Selection_sort() {
 
   
   for (var i = 0; i <= num; ++i) {
-    if (flag == 0){
-      return 
-    }
+    
     blocks[i].style.backgroundColor = "red";
     
     for (var j = 1; j <= num - i; ++j) {
-      if (flag == 0){
-        return 
-      }
+      
       blocks[j + i].style.backgroundColor = "orange";
       document.getElementsByClassName("range")[0].innerText = `[${i},${j}]`;
       await new Promise((resolve) =>
@@ -292,7 +282,7 @@ async function Selection_sort() {
       if (Number(blocks[i].childNodes[0].innerHTML) > Number(blocks[i + j].childNodes[0].innerHTML)) {
 
         await draw_swaping(i, j + i, blocks);
-        // drawback_colums(lines[i + j], i + j);
+        
         await new Promise((resolve) =>
           setTimeout(() => {
             resolve();
@@ -314,7 +304,7 @@ async function Selection_sort() {
     blocks[i].style.backgroundColor = "#6b5b95";
   }
 
-  flag = 0;
+  
   reEnableBtns();
   
 }
